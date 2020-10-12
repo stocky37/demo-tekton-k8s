@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quarkus-app
+  labels:
+    app: quarkus-app
+spec:
+  type: ClusterIP
+  selector:
+    app: quarkus-app
+  sessionAffinity: None
+  ports:
+  - name: 8080-http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080

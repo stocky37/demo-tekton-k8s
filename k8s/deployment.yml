@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkus-app
+  labels:
+    app: quarkus-app
+  # annotations:
+    # image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"quarkus-app:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"app\")].image"}]'
+spec:
+  selector:
+    matchLabels:
+      app: quarkus-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: quarkus-app
+    spec:
+      containers:
+        - name: app
+          image: quarkus-app:latest
