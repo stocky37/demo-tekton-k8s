@@ -5,8 +5,8 @@ metadata:
   name: quarkus-app
   labels:
     app: quarkus-app
-  # annotations:
-    # image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"quarkus-app:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"app\")].image"}]'
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"quarkus-app:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"app\")].image"}]'
 spec:
   selector:
     matchLabels:
@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
         - name: app
-          image: quarkus-app:latest
+          image: ' '
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
               path: /health/live
